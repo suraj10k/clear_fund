@@ -1,0 +1,17 @@
+ul {
+    display: flex;
+    align-items: center;
+}
+
+li {
+    list-style-type: none;
+    text-decoration: none;
+    color: red;
+    font-size: large;
+    padding: 0 20px 0 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
