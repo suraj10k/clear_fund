@@ -2,6 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
+import { DatePicker } from "@mui/lab";
+import Mydatepicker from "./MyDatePicker";
 
 export default function FormPropsTextFields() {
   return (
@@ -28,16 +30,9 @@ export default function FormPropsTextFields() {
             label="Project title"
             defaultValue="Hello World"
           />
-          <TextField
-            required
-            id="description"
-            label="Project description"
-          />
-          <TextField
-            id="wallet-address"
-            label="Wallet address"
-            required
-          />
+          <TextField required id="description" label="Project description" />
+          <TextField id="wallet-address" label="Wallet address" required />
+          <Mydatepicker />
         </div>
       </Box>
     </>
