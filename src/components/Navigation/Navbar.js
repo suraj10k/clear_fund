@@ -12,8 +12,11 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { authContext } from "../../contexts/auth-context";
 
 const ResponsiveAppBar = () => {
+  const { user, login, logout } = React.useContext(authContext);
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -31,11 +34,38 @@ const ResponsiveAppBar = () => {
               <li>
                 <NavLink to="/posts">All Posts</NavLink>
               </li>
-              <li>
-                <NavLink to="/my-posts">My Posts</NavLink>
-              </li>
+              {user && (
+                <li>
+                  <NavLink to="/my-posts">My Posts</NavLink>
+                </li>
+              )}
             </ul>
           </nav>
+          {user? <Button
+            onClick={() => logout()}
+            sx={{
+              background: "white",
+              color: "#1976d2",
+              position: "absolute",
+              right: "40px",
+              "&:hover": { background: "white", color: "#1976d2" },
+            }}
+            variant="outlined"
+          >
+            logout
+          </Button>:<Button
+          onClick={() => login(1)}
+          sx={{
+            background: "white",
+            color: "#1976d2",
+            position: "absolute",
+            right: "40px",
+            "&:hover": { background: "white", color: "#1976d2" },
+          }}
+          variant="outlined"
+        >
+          login
+        </Button>}
         </Toolbar>
       </Container>
     </AppBar>
