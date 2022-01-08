@@ -10,11 +10,14 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { authContext } from "../../contexts/auth-context";
+import { Backdrop } from "@mui/material";
+import Signup from "./Signup";
 
 const ResponsiveAppBar = () => {
+  const [showSignUp, setShowSignUp] = React.useState(false);
   const { user, login, logout } = React.useContext(authContext);
 
   return (
@@ -26,8 +29,9 @@ const ResponsiveAppBar = () => {
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            
           >
-            LOGO
+            <Link to="/">LOGO</Link>
           </Typography>
           <nav>
             <ul>
@@ -41,33 +45,57 @@ const ResponsiveAppBar = () => {
               )}
             </ul>
           </nav>
-          {user? <Button
-            onClick={() => logout()}
-            sx={{
-              background: "white",
-              color: "#1976d2",
-              position: "absolute",
-              right: "40px",
-              "&:hover": { background: "white", color: "#1976d2" },
-            }}
-            variant="outlined"
-          >
-            logout
-          </Button>:<Button
-          onClick={() => login(1)}
-          sx={{
-            background: "white",
-            color: "#1976d2",
-            position: "absolute",
-            right: "40px",
-            "&:hover": { background: "white", color: "#1976d2" },
-          }}
-          variant="outlined"
-        >
-          login
-        </Button>}
+          {user ? (
+            <>
+              <Button
+                onClick={() => logout()}
+                sx={{
+                  background: "white",
+                  color: "#1976d2",
+                  position: "absolute",
+                  right: "40px",
+                  "&:hover": { background: "white", color: "#1976d2" },
+                }}
+                variant="outlined"
+              >
+                logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                onClick={() => setShowSignUp(true)}
+                sx={{
+                  background: "white",
+                  color: "#1976d2",
+                  position: "absolute",
+                  right: "150px",
+                  "&:hover": { background: "white", color: "#1976d2" },
+                }}
+                variant="outlined"
+              >
+                signup
+              </Button>
+              <Button
+                onClick={() => login(1)}
+                sx={{
+                  background: "white",
+                  color: "#1976d2",
+                  position: "absolute",
+                  right: "40px",
+                  "&:hover": { background: "white", color: "#1976d2" },
+                }}
+                variant="outlined"
+              >
+                login
+              </Button>
+            </>
+          )}
         </Toolbar>
       </Container>
+      <Backdrop open={showSignUp} onClick={() => setShowSignUp(false)} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Signup />
+      </Backdrop>
     </AppBar>
   );
 };

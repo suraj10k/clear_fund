@@ -5,6 +5,7 @@ import Navbar from "./components/Navigation/Navbar";
 import PostDetailed from "./components/posts/PostDetailed";
 import Posts from "./components/posts/Posts";
 import UserPosts from "./components/posts/UserPosts";
+import TopBanner from "./components/Utility/TopBanner";
 import { authContext } from "./contexts/auth-context";
 
 const App = () => {
@@ -15,6 +16,9 @@ const App = () => {
       <div className="App">
         <Navbar />
         <Switch>
+          <Route exact path="/">
+            <TopBanner />
+          </Route>
           <Route exact path="/posts">
             <Posts />
           </Route>
