@@ -1,0 +1,31 @@
+.image-background {
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    padding: 30px 50px;
+    box-sizing: border-box;
+}
+
+.content {
+    display: flex;
+    padding: 25px 0;
+}
+
+.content * {
+    margin: 0 30px;
+}
+
+.image {
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.progress-container {
+    max-width: 90%;
+    margin-left: 20px;
+}
