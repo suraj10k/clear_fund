@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from "react-router-dom";
+import Footer from "./components/Navigation/Footer";
+import Navbar from "./components/Navigation/Navbar";
+import PostDetailed from "./components/posts/PostDetailed";
+import Posts from "./components/posts/Posts";
+import UserPosts from "./components/posts/UserPosts";
+import TopBanner from "./components/Utility/TopBanner";
+import { authContext } from "./contexts/auth-context";
 
-function App() {
+const App = () => {
+  const { user } = useContext(authContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <TopBanner />
+          </Route>
+          <Route exact path="/posts">
+            <Posts />
+          </Route>
+          {user && (
+            <Route exact path="/my-posts">
+              <UserPosts />
+            </Route>
+          )}
+          <Route exact path="/posts/:post_id">
+            <PostDetailed />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
