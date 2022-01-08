@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Redirect,
   Route,
   Switch,
+  NavLink,
 } from "react-router-dom";
 import Footer from "./components/Navigation/Footer";
 import Navbar from "./components/Navigation/Navbar";
@@ -40,20 +40,20 @@ const App = () => {
           <Route exact path="/posts/:post_id">
             <PostDetailed />
           </Route>
-          <Route exact path="/new-post">
+          {user && <Route exact path="/new-post">
             <Newpost />
-          </Route>
+          </Route>}
           <Redirect to="/" />
         </Switch>
         {user && (
-          <Link to="/new-post">
+          <NavLink activeStyle={{ display: "none" }} to="/new-post">
             <Box sx={{ position: "fixed", right: "40vw", bottom: "40px" }}>
               <Fab variant="extended" color="primary" aria-label="add">
                 <AddIcon />
                 &nbsp; &nbsp; add new project/campaign
               </Fab>
             </Box>
-          </Link>
+          </NavLink>
         )}
         <Footer />
       </div>
