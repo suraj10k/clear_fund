@@ -26,7 +26,7 @@ export default function PostCard(props) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {props.title[0] || "A"}
           </Avatar>
         }
         action={
@@ -34,22 +34,20 @@ export default function PostCard(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.title}
+        subheader={props.subheader}
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/paella.jpg"
+        image={`/static/images/${props.image}.jpg`}
         alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {props.description}
         </Typography>
-        <CustomizedProgressBars collected={200} target={300} />
+        <CustomizedProgressBars collected={props.collected} target={props.target} />
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">

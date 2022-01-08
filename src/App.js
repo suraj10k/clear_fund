@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navigation/Navbar";
-import PostList from "./posts/PostList";
+import Posts from "./components/posts/Posts";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path="/posts">
-            <PostList />
+            <Posts />
           </Route>
         </Switch>
       </div>
