@@ -69,8 +69,8 @@ export default function NewPost() {
       let Amount = ethers.utils.parseEther(AmountInEth);
       let Time = document.getElementById("Time").value;
       let Location = document.getElementById("Location").value;
-      let Category = "DeFi";
-      let img = "https://docs.metamask.io/metamask-fox.svg";
+      let Category = document.getElementById("Catergory").value;
+      let img = document.getElementById("IMG").value;
       /*let img = await uploadImageOnIPFS(); */
       //console.log(img);
       let txn = await contract.startProject(Title,Description,Time,Amount,Location,Category,img);
@@ -141,6 +141,18 @@ export default function NewPost() {
           />
           <TextField
             required
+            id="Category"
+            type="text"
+            label="Category"
+          />
+          <TextField
+            required
+            id="IMG"
+            type="text"
+            label="Image"
+          />
+          <TextField
+            required
             id="Time"
             type="number"
             label="Raise Until"
@@ -157,7 +169,7 @@ export default function NewPost() {
           />
         </div>
       </Box>
-      <Button onClick={() => startProject()} variant="contained">submit</Button>
+      <Button  onClick={() => startProject()} variant="contained">submit</Button>
     </div>
   );
 }

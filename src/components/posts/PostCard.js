@@ -18,7 +18,10 @@ export default function PostCard(props) {
   const history = useHistory();
 
   function cardClickHandler() {
-    history.push(`posts/${props.id}`);
+    history.push({
+      pathname: `posts/${props.id}`,
+      state: props
+    });
   }
 
   return (
@@ -40,7 +43,7 @@ export default function PostCard(props) {
       <CardMedia
         component="img"
         height="194"
-        image={`/static/images/${props.image}.jpg`}
+        image={`${props.image}`}
         alt="Paella dish"
       />
       <CardContent>

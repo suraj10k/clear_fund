@@ -10,7 +10,7 @@ const client = create("https://ipfs.infura.io:5001/api/v0");
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
-  const [account, setAccount] = useState("");
+  let [account, setAccount] = useState("");
 
   async function getProjectsFunc() {
     account = await window.ethereum.request({ method: "eth_accounts" });
@@ -28,17 +28,19 @@ const Posts = () => {
       const postarray = [];
       getAllProjectsArray.forEach((project, index) => {
         postarray.push({
-          id: project["OrganizationId"],
+          id: index,
           title: project["Title"],
           subheader: `Closing on ${project["Deadline"]}`,
           image: project["Img"],
           description: project["Description"],
-          collected: project["CapitalRaised"],
-          target: project["Target"],
+          collected: parseInt(project['CapitalRaised'].toString())/1e18,
+          target: parseInt(project['Target'].toString())/1e18,
           content: project["Description"],
           creator_id: project["Creator"],
         });
+        console.log(parseInt(project['CapitalRaised'].toString())/1e18, parseInt(project['Target'].toString())/1e18);
       });
+
 
       setPosts(postarray);
     } catch (e) {
@@ -46,12 +48,8 @@ const Posts = () => {
     }
   }
 
-  function getPosts() {
-    setPosts(posts_data);
-  }
-
   useEffect(() => {
-    getPosts();
+    getProjectsFunc();
   }, []);
 
   if (!posts) return <h1>Loading...</h1>;

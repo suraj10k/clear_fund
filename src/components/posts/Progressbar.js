@@ -28,7 +28,7 @@ export default function CustomizedProgressBars(props) {
         variant={props.typography_variant}
         sx={{ marginBottom: "5px", display: "flex", alignItems: "center" }}
       >
-        Progress: ${props.collected} / ${props.target} {props.children}
+        Progress: {props.collected} ETH / {props.target} {props.children} ETH
       </Typography>
       <BorderLinearProgress variant="determinate" value={percentage} />
     </Box>

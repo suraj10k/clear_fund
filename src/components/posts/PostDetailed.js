@@ -6,15 +6,18 @@ import { useParams } from "react-router-dom";
 import CustomizedProgressBars from "./Progressbar";
 import posts from "../../data/posts";
 import "./PostDetailed.css";
+import { useHistory } from "react-router-dom";
 
 const ClearFundAddress = "0x7108881aDDA033c4f1D321e6684D0788202C45e0";
 
 const PostDetailed = () => {
-  const [data, setData] = useState(null);
-  const [queried, setQueried] = useState(false);
+  let [data, setData] = useState(null);
+  let [queried, setQueried] = useState(false);
 	let [account, setAccount] = useState("");
   let [allMyProjects, setMyProjects ] = useState([]);
   let [totalContribution, setTotalContributions] = useState(0);
+
+  const history = useHistory();
 
   const params = useParams();
   const post_id = parseInt(params.post_id);
@@ -26,11 +29,12 @@ const PostDetailed = () => {
   }
 
   useEffect(() => {
-    getData();
+    setData(history.location.state);
+    console.log(history.location.state);
   }, []);
 
-  if (!queried) return <h1>Loading...</h1>;
-  else if (!data && queried) return <h1>No posts with the given id.</h1>;
+  // if (!queried) return <h1>Loading...</h1>;
+  if (!data) return <h1>No posts with the given id.</h1>;
 
   return (
     <main style={{ margin: "5px 0" }}>
@@ -43,9 +47,9 @@ const PostDetailed = () => {
           {data.title}
         </Typography>
 
-        <Typography sx={{ maxWidth: "75%" }} variant="h5" mt={5}>
+        {/* <Typography sx={{ maxWidth: "75%" }} variant="h5" mt={5}>
           {data.description}
-        </Typography>
+        </Typography> */}
       </div>
       <div style={{ display: "flex", alignItems: "center", margin: "20px" }}>
         <Avatar sx={{ margin: "0 10px 0 0" }}>{data.title[0]}</Avatar>
@@ -55,8 +59,9 @@ const PostDetailed = () => {
       <div className="content">
         <img
           className="image"
-          src={`/static/images/${data.image}.jpg`}
+          src={data.image}
           alt={data.image}
+          style={{ minWidth: "400px" }}
         />
         <Typography variant="body1" sx={{ textAlign: "justify" }}>
           {data.content}
@@ -71,8 +76,10 @@ const PostDetailed = () => {
           target={data.target}
           style={{}}
         >
-            {data.collected < data.target? <Button sx={{ marginLeft: "20px" }} variant="contained">contribute</Button>:<Button sx={{ marginLeft: "20px" }} variant="contained" disabled>Target reached</Button>}
         </CustomizedProgressBars>
+      </div>
+      <div>
+      {data.collected < data.target? <Button sx={{ margin: "20px" }} variant="contained">contribute</Button>:<Button sx={{ margin: "20px" }} variant="contained" disabled>Target reached</Button>}
       </div>
     </main>
   );
