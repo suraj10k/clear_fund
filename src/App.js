@@ -49,16 +49,6 @@ const App = () => {
           </Route>}
           <Redirect to="/" />
         </Switch>
-        {user && (
-          <NavLink activeStyle={{ display: "none" }} to="/new-post">
-            <Box sx={{ position: "fixed", right: "40vw", bottom: "40px" }}>
-              <Fab variant="extended" color="primary" aria-label="add">
-                <AddIcon />
-                &nbsp; &nbsp; add new project/campaign
-              </Fab>
-            </Box>
-          </NavLink>
-        )}
         <Footer />
       </div>
     </Router>
