@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React,{useContext,useState} from "react";
+import {ethers} from 'ethers';
+import ClearFund from './artifacts/contracts/clearFund.sol/clearFund.json'
 import {
   BrowserRouter as Router,
   Redirect,
@@ -17,11 +19,12 @@ import { authContext } from "./contexts/auth-context";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import 
+
+const ClearFundAddress = "0x3BB898B4Bbe24f68A4e9bE46cFE72D1787FD74F4";
 
 const App = () => {
   const { user } = useContext(authContext);
-
+  const [clearFund,clearFundValue] = useState();
   return (
     <Router>
       <div className="App">

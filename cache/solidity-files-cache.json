@@ -2,7 +2,7 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/suraj/dev/blockchain/Hackathon_Project/clear_fund/contracts/clearFund.sol": {
-      "lastModificationDate": 1641662174480,
+      "lastModificationDate": 1641667978867,
       "contentHash": "23481ddaa61cf9f0fd088a3c00bd88fc",
       "sourceName": "contracts/clearFund.sol",
       "solcConfig": {

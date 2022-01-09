@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import "./TopBanner.css";
+import Animated from '../../pictures/animated.svg';
 
-const messages = ["Tech#1", "Tech#2", "Tech#3"];
+const messages = ["Fund#$", "Fund#Ξ", "Fund#₿"];
 
 const TopBanner = () => {
   const [messageIndex, setMessageIndex] = useState(0);
@@ -23,7 +24,7 @@ const TopBanner = () => {
       className="top-banner"
     >
       <div className="top-banner__messages-container">
-        <h1>Experience&nbsp;</h1>
+        <h1>Clear&nbsp;</h1>
         <div className="messages">
           <h1 style={{ opacity: "0", position: "relative" }}>
             {messages[messageIndex]}

@@ -8,6 +8,7 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link, NavLink } from "react-router-dom";
@@ -31,16 +32,16 @@ const ResponsiveAppBar = () => {
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
             
           >
-            <Link to="/">LOGO</Link>
+            <Link to="/"><img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-funding-bitcoin-kiranshastry-gradient-kiranshastry.png"/></Link>
           </Typography>
           <nav>
             <ul>
               <li>
-                <NavLink to="/posts">All Posts</NavLink>
+              <Button startIcon={<PostAddIcon/>} component={Link} to='/posts' variant="contained">All Posts</Button>
               </li>
               {user && (
                 <li>
-                  <NavLink to="/my-posts">My Posts</NavLink>
+                <Button startIcon={<PostAddIcon/>} component={Link} to='/my-posts' variant="contained">New Post</Button>
                 </li>
               )}
             </ul>
