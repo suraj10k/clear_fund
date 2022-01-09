@@ -1,13 +1,20 @@
 import { Avatar, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import {ethers, utils} from "ethers"
+import ClearFund from "../../artifacts/contracts/clearFund.sol/clearFund.json"
 import { useParams } from "react-router-dom";
 import CustomizedProgressBars from "./Progressbar";
 import posts from "../../data/posts";
 import "./PostDetailed.css";
 
+const ClearFundAddress = "0x7108881aDDA033c4f1D321e6684D0788202C45e0";
+
 const PostDetailed = () => {
   const [data, setData] = useState(null);
   const [queried, setQueried] = useState(false);
+	let [account, setAccount] = useState("");
+  let [allMyProjects, setMyProjects ] = useState([]);
+  let [totalContribution, setTotalContributions] = useState(0);
 
   const params = useParams();
   const post_id = parseInt(params.post_id);
