@@ -46,12 +46,8 @@ const Posts = () => {
     }
   }
 
-  function getPosts() {
-    setPosts(posts_data);
-  }
-
   useEffect(() => {
-    getPosts();
+    getProjectsFunc();
   }, []);
 
   if (!posts) return <h1>Loading...</h1>;
