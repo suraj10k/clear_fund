@@ -1,7 +1,7 @@
 import * as React from "react";
-import { useState , useEffect } from "react";
-import {create } from 'ipfs-http-client';
-import {ethers,utils} from "ethers";
+import { useState, useEffect } from "react";
+import { create } from 'ipfs-http-client';
+import { ethers, utils } from "ethers";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputLabel from '@mui/material/InputLabel';
@@ -13,40 +13,41 @@ import { Button, Typography } from "@mui/material";
 import ClearFund from "../../artifacts/contracts/clearFund.sol/clearFund.json"
 import "./Newpost.css";
 
-const ClearFundAddress = "0x3BB898B4Bbe24f68A4e9bE46cFE72D1787FD74F4";
+const ClearFundAddress = "0x7108881aDDA033c4f1D321e6684D0788202C45e0";
 
 export default function UserPosts() {
 
-  let [allProjects,setAllProjects] = useState([]);
-  let [account,setAccount] = useState("");
-  let [title,setTitle] = useState("");
-  let [description,setDescription] = useState("");
-  let [target,setTarget] = useState("");
-  let [deadline,setDeadline] = useState("");
-  let [capitalRaised,setCapitalRaised] = useState("");
-  
+  let [allProjects, setAllProjects] = useState([]);
+  let [account, setAccount] = useState("");
+  let [title, setTitle] = useState("");
+  let [description, setDescription] = useState("");
+  let [target, setTarget] = useState("");
+  let [deadline, setDeadline] = useState("");
+  let [capitalRaised, setCapitalRaised] = useState("");
+
   useEffect(() => {
     getProjectsFunc()
-  },[]);
-  
-  async function getProjectsFunc() {
-    account = await window.ethereum.request({ method: 'eth_requestAccounts' })
-		setAccount(account);
-		const provider = new ethers.providers.Web3Provider(window.ethereum);
-		const signer = provider.getSigner();
-		const contract = new ethers.Contract(ClearFundAddress, ClearFund.abi, signer);
+  }, []);
 
+  async function getProjectsFunc() {
+    account = await window.ethereum.request({ method: 'eth_accounts' })
+    setAccount(account);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(ClearFundAddress, ClearFund.abi, signer)
+   
 		try {
 			let getAllProjectsArray = await contract.getAllProjects();
 			console.log(getAllProjectsArray);
-			console.log(getAllProjectsArray[0].Title);
+			console.log(getAllProjectsArray[0].title);
 			console.log(getAllProjectsArray[0][4]);
+
 			setAllProjects(getAllProjectsArray);
 		}
 		catch (e) {
 			console.log(e);
 		}
-	}
+  }
 
   /*let uploadImageOnIPFS = async () =>{
     const file = fileInput.files[0];
@@ -56,14 +57,14 @@ export default function UserPosts() {
   }*/
 
   async function startProject() {
-    
+
     getProjectsFunc();
-    
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(ClearFundAddress,ClearFund.abi,signer);
-    
-    try{
+    const contract = new ethers.Contract(ClearFundAddress, ClearFund.abi, signer);
+
+    try {
       let Title = document.getElementById("Title").value;
       let Description = document.getElementById("Description").value;
       let AmountInEth = document.getElementById("FundAmount").value;
@@ -74,35 +75,35 @@ export default function UserPosts() {
       let img = "https://docs.metamask.io/metamask-fox.svg";
       /*let img = await uploadImageOnIPFS(); */
       //console.log(img);
-      let txn = await contract.startProject(Title,Description,Time,Amount,Location,Category,img);
+      let txn = await contract.startProject(Title, Description, Time, Amount, Location, Category, img);
       let txnreceipt = await txn;
       console.log(txnreceipt);
       getProjectsFunc();
-    } catch (e){
+    } catch (e) {
       alert(e.message)
     }
   }
 
-/*  const [formData, setFormData] = React.useState({
-    Title: "",
-    Description: "",
-    FundAmount: "",
-    Time: "",
-    Location: "",
-  });
-
-  const changeHandler = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
+  /*  const [formData, setFormData] = React.useState({
+      Title: "",
+      Description: "",
+      FundAmount: "",
+      Time: "",
+      Location: "",
     });
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  }
- */
+  
+    const changeHandler = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    };
+  
+    const submitHandler = (e) => {
+      e.preventDefault();
+      console.log(formData);
+    }
+   */
   return (
     <div className="container">
       <Typography variant="h4" mb={5}>

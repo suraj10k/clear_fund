@@ -13,13 +13,16 @@ import { Button, Typography } from "@mui/material";
 import ClearFund from "../../artifacts/contracts/clearFund.sol/clearFund.json"
 import "./Newpost.css";
 
-const ClearFundAddress = "0x3BB898B4Bbe24f68A4e9bE46cFE72D1787FD74F4";
+const ClearFundAddress = "0x7108881aDDA033c4f1D321e6684D0788202C45e0";
 const client = create('https://ipfs.infura.io:5001/api/v0');
 
 export default function NewPost() {
 
-  let [allProjects,setAllProjects] = useState([]);
+  let [allProjects,setAllProjects] = useState("");
   let [account,setAccount] = useState("");
+  const [fundRaiser,setFundRaiser] = useState({
+
+  })
   
   useEffect(() => {
     getProjectsFunc()

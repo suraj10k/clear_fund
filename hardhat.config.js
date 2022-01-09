@@ -1,7 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 
 const fs = require('fs');
-const privateKey = fs.readFileSync(".secret.env").toString().trim();
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -25,9 +24,9 @@ module.exports = {
     artifacts: './src/artifacts',
   },
   networks:{
-    matic:{
-      url:"https://rpc-mumbai.maticvigil.com",
-      accounts: [privateKey]
+    ropsten:{
+        url: "https://ropsten.infura.io/v3/0f641ab893d749ef8cc8dc5b6b6ca78d",
+        accounts: ["716f7126775af885e7f5d5e5f66b0a1c252b9bb7f878c47c0fe3a2a8c9eb3c93"]
     }
   }
 };

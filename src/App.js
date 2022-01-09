@@ -20,7 +20,7 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
-const ClearFundAddress = "0x3BB898B4Bbe24f68A4e9bE46cFE72D1787FD74F4";
+const ClearFundAddress = "0x7108881aDDA033c4f1D321e6684D0788202C45e0";
 
 const App = () => {
   const { user } = useContext(authContext);
